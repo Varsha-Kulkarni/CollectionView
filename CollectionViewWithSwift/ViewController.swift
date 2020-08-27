@@ -28,12 +28,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     @IBAction func addItem(AnyObject)
     {
-    var num = String(cellNames.count)
-    cellNames.append(num)
-    let insertIndexPath = NSIndexPath(forItem: cellNames.count - 1, inSection: 0)
+        var num = String(cellNames.count)
+        cellNames.append(num)
+        let insertIndexPath = NSIndexPath(forItem: cellNames.count - 1, inSection: 0)
         println("The shopping list contains \(cellNames.count) items.")
 
-    collectionView.insertItemsAtIndexPaths([insertIndexPath])
+        collectionView.insertItemsAtIndexPaths([insertIndexPath])
     }
     
     
@@ -42,32 +42,30 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
   
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-
-    return cellNames.count
+        return cellNames.count
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
     {
-    
-    return 1
+        return 1
     }
     
-func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! CollectionViewCell
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell 
+    {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! CollectionViewCell
 
-    cell.label.text = cellNames[indexPath.row]
+        cell.label.text = cellNames[indexPath.row]
     
-    return cell;
+        return cell;
     }
     
     
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
+        cellNames.removeAtIndex(indexPath.row)
     
-    cellNames.removeAtIndex(indexPath.row)
-    
-    collectionView.deleteItemsAtIndexPaths([indexPath]);
+        collectionView.deleteItemsAtIndexPaths([indexPath]);
     }
 
 
